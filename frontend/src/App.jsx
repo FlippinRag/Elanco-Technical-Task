@@ -5,21 +5,33 @@ import bug from "../src/assets/Ladybug.png"
 function App() {
   const [activeTab, setActiveTab] = useState("home")
   const [darkMode, setDarkMode] = useState(false)
+  const [fontSize, setFontSize] = useState("medium")
+
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode")
     if (savedMode !== null) {
       setDarkMode(savedMode === "true")
     }
+
+    const savedFontSize = localStorage.getItem("fontSize")
+    if (savedFontSize !== null) {
+      setFontSize(savedFontSize)
+    }
   }, [])
 
   const toggleDarkMode = () => {
-  setDarkMode((prevMode) => {
-    const newMode = !prevMode
-    localStorage.setItem('darkMode', newMode.toString())
-    return newMode
-  })
-}
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode
+      localStorage.setItem('darkMode', newMode.toString())
+      return newMode
+    })
+  }
+
+  const changeFontSize = (size) => {
+    setFontSize(size)
+    localStorage.setItem('fontSize', size)
+  }
 
   useEffect(() => {
     if (darkMode) {
@@ -29,7 +41,18 @@ function App() {
     }
   }, [darkMode])
 
-  
+  useEffect(() => {
+    const root = document.documentElement
+    root.classList.remove('text-sm', 'text-base', 'text-lg')
+
+    if (fontSize === 'small') {
+      root.classList.add('text-sm')
+    } else if (fontSize === 'large') {
+      root.classList.add('text-lg')
+    } else {
+      root.classList.add('text-base')
+    }
+  }, [fontSize])
 
 
   return (
@@ -46,7 +69,47 @@ function App() {
             </p>
           </div>
 
+          {/*Font Size*/}
+
           <div className="flex gap-3 items-center">
+            <div className="flex gap-2 items-center">
+              <button
+                onClick={() => changeFontSize('small')}
+                className={`px-3 py-2 rounded text-xs font-medium transition-all duration-10 ${fontSize === 'small'
+                    ? 'bg-white text-green-600 shadow-md'
+                    : 'text-white hover:text-green-100'
+                  }`}
+                aria-label="Small font size"
+                title="Small font"
+              >
+                A
+              </button>
+              <button
+                onClick={() => changeFontSize('medium')}
+                className={`px-3 py-2 rounded text-sm font-medium transition-all duration-10 ${fontSize === 'medium'
+                    ? 'bg-white text-green-600 shadow-md'
+                    : 'text-white hover:text-green-100'
+                  }`}
+                aria-label="Medium font size"
+                title="Medium font"
+              >
+                A
+              </button>
+              <button
+                onClick={() => changeFontSize('large')}
+                className={`px-3 py-2 rounded text-base font-medium transition-all duration-10 ${fontSize === 'large'
+                    ? 'bg-white text-green-600 shadow-md'
+                    : 'text-white hover:text-green-100'
+                  }`}
+                aria-label="Large font size"
+                title="Large font"
+              >
+                A
+              </button>
+            </div>
+
+            {/*Dark Mode and Light Mode*/}
+
             <button
               onClick={toggleDarkMode}
               className="p-3 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200"
