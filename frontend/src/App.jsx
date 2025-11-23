@@ -4,6 +4,32 @@ import bug from "../src/assets/Ladybug.png"
 
 function App() {
   const [activeTab, setActiveTab] = useState("home")
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode")
+    if (savedMode !== null) {
+      setDarkMode(savedMode === "true")
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+  setDarkMode((prevMode) => {
+    const newMode = !prevMode
+    localStorage.setItem('darkMode', newMode.toString())
+    return newMode
+  })
+}
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode])
+
+  
 
 
   return (
@@ -20,9 +46,19 @@ function App() {
             </p>
           </div>
 
-          <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors duration-200 shadow-md">
-            Report a Sighting
-          </button>
+          <div className="flex gap-3 items-center">
+            <button
+              onClick={toggleDarkMode}
+              className="p-3 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? "☀️" : "🌙"}
+            </button>
+
+            <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-600">
+              Report a Sighting
+            </button>
+          </div>
         </div>
       </header>
 
