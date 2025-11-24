@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "./index.css"
 import bug from "../src/assets/ladybug.png"
-import Home from './pages/Home.jsx'
+import Home from './pages/home.jsx'
 import InteractiveMap from "./pages/InteractiveMap"
 import EducationCenter from "./pages/EducationCenter.jsx"
 import ReportSighting from "./pages/ReportSighting.jsx"
