@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./index.css"
-import bug from "../src/assets/Ladybug.png"
+import bug from "../src/assets/ladybug.png"
 import Home from './pages/Home.jsx'
 import InteractiveMap from "./pages/InteractiveMap"
 import EducationCenter from "./pages/EducationCenter.jsx"
