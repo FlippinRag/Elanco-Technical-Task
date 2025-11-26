@@ -53,31 +53,6 @@ The app will be available at [http://localhost:5173](http://localhost:5173)
 
 **Note:** The live deployment uses a pre-configured Firebase database. Local development will connect to the same database.
 
-## Project Structure
-
-```
-frontend/
-├── public/
-│   ├── Tick Sightings.csv      
-│   └── bug.svg                 
-├── src/
-│   ├── assets/                 
-│   ├── pages/
-│   │   ├── Home.jsx           
-│   │   ├── InteractiveMap.jsx 
-│   │   ├── EducationCenter.jsx 
-│   │   └── ReportSighting.jsx 
-│   ├── firebase.js            
-│   ├── App.jsx                
-│   ├── main.jsx              
-│   └── index.css             
-├── .env.example              
-├── .gitignore
-├── package.json
-├── tailwind.config.js
-└── vite.config.js
-```
-
 ## Features Walkthrough
 
 ### 1. Interactive Map
